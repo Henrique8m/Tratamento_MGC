@@ -12,4 +12,5 @@ public class ImageController {
 	public static Image loadImage(String nameImage, Object recurso) {
 		return new Image(recurso.getClass().getResource("gui/resources/" + nameImage).toString());
 	}
+	
 }

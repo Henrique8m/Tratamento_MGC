@@ -14,10 +14,15 @@ import javafx.stage.StageStyle;
 
 public class NewView {	
 	
-	public static synchronized <T> Object loadFXML(String fxml, Object controller, Object recurso) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(recurso.getClass().getResource("gui/fxml/" + fxml + ".fxml"));
+	public static synchronized <T> Object loadFXML(String fxml, Object controller, Object application) {
+		FXMLLoader fxmlLoader = new FXMLLoader(application.getClass().getResource("gui/fxml/" + fxml + ".fxml"));
 		fxmlLoader.setController(controller);
-		return fxmlLoader.load();
+		try {
+			return fxmlLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static void getNewViewModall(String title, Pane pane, Stage stageEvent){
@@ -33,29 +38,22 @@ public class NewView {
 		stage.showAndWait();
 	}
 	
-	public static void getNewView(String title, String fxml, Object controller, Object recurso){		
-		try {
-			Pane Pane = (Pane) loadFXML(fxml, controller, recurso);
-			Scene scene = new Scene(Pane);
-			Stage stage = new Stage();
-			stage.setMaximized(false);
-			stage.setTitle(title);
-		    stage.getIcons().add(new Image(TratamentoMgcApplication.class.getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
-			stage.setScene(scene);
-			stage.show();
-			
-		} catch (IOException e) {			
-			e.printStackTrace();
-			return;
-			
-		}
+	public static void getNewView(String title, String fxml, Object controller, Object applications) throws IOException{		
+		Pane Pane = (Pane) loadFXML(fxml, controller, applications);
+		Scene scene = new Scene(Pane);
+		Stage stage = new Stage();
+		stage.setMaximized(false);
+		stage.setTitle(title);
+		stage.getIcons().add(new Image(TratamentoMgcApplication.class.getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
+		stage.setScene(scene);
+		stage.show();
 
 	}
 	
-	public static Stage getNewView(String title, Scene mainScene, Stage stage, Object recurso){
-		stage.setMaximized(true);
+	public static Stage getNewView(String title, Scene mainScene,boolean setMaximized, Stage stage, Object application){
+		stage.setMaximized(setMaximized);
 		stage.setTitle(title);
-	    stage.getIcons().add(new Image(recurso.getClass().getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
+	    stage.getIcons().add(new Image(application.getClass().getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
 		stage.setScene(mainScene);
 		stage.show();
 		return stage;

@@ -2,6 +2,7 @@ package com.hrodriguesdev;
 
 
 import com.hrodriguesdev.gui.controller.Load;
+import com.hrodriguesdev.gui.controller.Main;
 import com.hrodriguesdev.gui.view.NewView;
 import com.hrodriguesdev.image.ImageController;
 
@@ -20,12 +21,11 @@ public class TratamentoMgcApplication extends Application{
 //	Carregando a view de Load
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
-		Pane pane = (Pane) NewView.loadFXML("loadView", new Load(), this);
+		
+		stage = primaryStage;	
+		Pane pane = (Pane) NewView.loadFXML("loadView", new Load(stage, new Main(), this), this);
 		pane.getChildren().add(ImageController.loadImageView(nameImageViewStarting, this));
 		scene = new Scene(pane, 400, 300);		
-		stage = primaryStage;
-		stage = new Stage();
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.setScene(scene);
 		stage.setTitle("Pirometros");
