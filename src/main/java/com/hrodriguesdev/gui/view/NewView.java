@@ -38,12 +38,10 @@ public class NewView {
 		stage.showAndWait();
 	}
 	
-	public static Stage newViewOpen(String title, String fxml, Object controller, Object applications, boolean setMaximized) throws IOException{		
+	public static Stage newViewOpen(String fxml, Stage stage , Object controller, Object applications, boolean setMaximized) throws IOException{		
 		Pane Pane = (Pane) loadFXML(fxml, controller, applications);
 		Scene scene = new Scene(Pane);
-		Stage stage = new Stage();
 		stage.setMaximized(setMaximized);
-		stage.setTitle(title);
 		stage.getIcons().add(new Image(TratamentoMgcApplication.class.getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
 		stage.setScene(scene);
 		stage.show();

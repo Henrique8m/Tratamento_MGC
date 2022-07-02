@@ -37,8 +37,9 @@ public class Main implements Initializable{
 	*/
 		if(stageFornoUm == null || !stageFornoUm.isShowing()) {
 			try {
-				stageFornoUm = NewView.newViewOpen("Forno 01", "fornoView", new Forno(), applications, false);
-				System.out.println("Teste View");
+				Stage stage = new Stage();
+				stage.setTitle("Forno 01");
+				stageFornoUm = NewView.newViewOpen("fornoView", stage, new Forno(stage), applications, false);
 		
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -51,8 +52,9 @@ public class Main implements Initializable{
 	private void fornoDois(ActionEvent event) {
 		if(stageFornoDois == null || !stageFornoDois.isShowing()) {
 			try {
-				stageFornoDois = NewView.newViewOpen("Forno 02", "fornoView", new Forno(), applications, false);
-				System.out.println("Teste View");
+				Stage stage = new Stage();
+				stage.setTitle("Forno 02");
+				stageFornoUm = NewView.newViewOpen("fornoView", stage, new Forno(stage), applications, false);
 		
 			} catch (IOException e) {
 				e.printStackTrace();
