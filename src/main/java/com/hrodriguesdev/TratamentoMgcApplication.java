@@ -23,7 +23,7 @@ public class TratamentoMgcApplication extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		
 		stage = primaryStage;	
-		Pane pane = (Pane) NewView.loadFXML("loadView", new Load(stage, new Main(), this), this);
+		Pane pane = (Pane) NewView.loadFXML("loadView", new Load(stage, new Main(this), this), this);
 		pane.getChildren().add(ImageController.loadImageView(nameImageViewStarting, this));
 		scene = new Scene(pane, 400, 300);		
 		stage.initStyle(StageStyle.UNDECORATED);

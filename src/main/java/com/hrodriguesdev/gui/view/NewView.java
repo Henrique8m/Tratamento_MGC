@@ -38,19 +38,20 @@ public class NewView {
 		stage.showAndWait();
 	}
 	
-	public static void getNewView(String title, String fxml, Object controller, Object applications) throws IOException{		
+	public static Stage newViewOpen(String title, String fxml, Object controller, Object applications, boolean setMaximized) throws IOException{		
 		Pane Pane = (Pane) loadFXML(fxml, controller, applications);
 		Scene scene = new Scene(Pane);
 		Stage stage = new Stage();
-		stage.setMaximized(false);
+		stage.setMaximized(setMaximized);
 		stage.setTitle(title);
 		stage.getIcons().add(new Image(TratamentoMgcApplication.class.getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
 		stage.setScene(scene);
 		stage.show();
+		return stage;
 
 	}
 	
-	public static Stage getNewView(String title, Scene mainScene,boolean setMaximized, Stage stage, Object application){
+	public static Stage getNewView(String title, Scene mainScene, boolean setMaximized, Stage stage, Object application){
 		stage.setMaximized(setMaximized);
 		stage.setTitle(title);
 	    stage.getIcons().add(new Image(application.getClass().getResource("gui/resources/" + "Yggdrasilicon.jpg").toString()));
